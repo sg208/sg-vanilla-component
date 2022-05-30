@@ -7,11 +7,11 @@ This is a simple payment option sample with Vanilla JS and simple CSS in JS, no 
 - Vanilla JS
 - CSS in JS (single file component)
 - Vite (bundler)
-- Render.com (CI/CD auto deploy on merged request to master)
+- Deployed to Cloudflare Pages
 
 ## Demo
 
-- https://sg-vanilla-component.onrender.com
+- https://sg-vanilla-component.engg.me
 
 ## Deployment Notes
 
