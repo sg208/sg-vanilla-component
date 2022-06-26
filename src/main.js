@@ -23,7 +23,7 @@ function sgvc({
   sgvcstate.isPaymentMoreThanMaximum = false
   sgvcstate.defaultDropdownNonSelected = "Choose your bank"
   sgvcstate.selectedBank = null
-  sgvcform.action = "/result"
+  sgvcform.action = `${window.location.href}result`
 
   // HELPERS ===========================================
   // Formatted amounts for minimum charge, big and small amount to charge --------------------
