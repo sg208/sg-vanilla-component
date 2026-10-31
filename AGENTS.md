@@ -5,34 +5,42 @@
 ## Project
 
 - PURPOSE: demo payment-option picker (Dutch bank list, amount editor) in plain JS with CSS-in-JS; no framework, no backend.
-- STACK: vanilla JS (ES modules) · Vite (multi-page, `root: src`) · static output `dist/` · deployed to Cloudflare Pages (`readme.md`).
+- STACK: vanilla JS (ES modules) · Vite 8 (multi-page, `root: src`) · Vitest 5 + jsdom · pnpm 10 · Node 24 (`.node-version`) · static output `dist/` · deployed to Cloudflare Pages (`readme.md`).
 - Branches: `develop` = work branch; `main` = default + release; `master` = legacy, kept.
 
 ## Commands
 
-- `npm run dev` — Vite dev server
-- `npm run build` — static build to `dist/`
-- `npm run preview` — serve `dist/`
-- Tests: none
+- `source ~/.nvm/nvm.sh && nvm use 24` — before any pnpm command
+- `pnpm install` — install (lockfile `pnpm-lock.yaml`)
+- `pnpm dev` — Vite dev server
+- `pnpm build` — static build to `dist/`
+- `pnpm preview` — serve `dist/`
+- `pnpm test` — Vitest suite (`tests/*.test.js`, jsdom)
 
 ## Rules
 
-- No framework, no runtime dependencies; component lives in `src/main.js` (enforced_by: unverified).
+- No framework, no runtime dependencies; pnpm only (no npm/yarn lockfiles); component lives in `src/main.js` (enforced_by: unverified).
 - Pages: `src/index.html` → `src/main.js` (`#app`), `src/result/` (`#sgvc-result`), `src/about/` (`#sgvc-about`); each listed in `vite.config.js` `rollupOptions.input`.
 
 ## Architecture
 
 - `src/main.js:4` — `sgvc({ targetEl, colors, data })` renders styles + markup into `targetEl`; `data` (bank list + `options`) and the call sit at the file end.
 - `vite.config.js` — `root: src`, `outDir: dist`, three HTML inputs.
+- `vitest.config.js` — jsdom env, `tests/**/*.test.js`; tests re-import `src/main.js` per case (`vi.resetModules`) since it self-invokes on import (`src/main.js:861`).
 - `form-result.html` (repo root) — unused sample, not in the build.
 
 ## Test profile
 
 | field | value |
 |---|---|
-| runner | none |
-| levels | unit ✗ · integration ✗ · e2e ✗ |
+| runner | Vitest 5 + jsdom (`vitest.config.js`) |
+| command | `pnpm test` |
+| levels | unit ✓ (DOM, `tests/main.test.js`) · integration ✗ · e2e ✗ |
 | enforced_by | no CI workflows (`.github/` absent) |
+
+## License
+
+- MIT · `LICENSE` · `package.json` `license`
 
 ## References <!-- enggflo -->
 
