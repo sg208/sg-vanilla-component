@@ -7,14 +7,28 @@ This is a simple payment option sample with Vanilla JS and simple CSS in JS, no 
 - Vanilla JS
 - CSS in JS (single file component)
 - Vite (bundler)
+- Vitest + jsdom (tests)
 - Deployed to Cloudflare Pages
 
 ## Demo
 
 - https://sg-vanilla-component.engg.me
 
+## Development
+
+```bash
+pnpm install
+pnpm dev       # dev server
+pnpm build     # static build to dist/
+pnpm test      # Vitest suite
+```
+
 ## Deployment Notes
 
-- Node version: `16.15.0`
-- Build command: `npm run build`
+- Node version: `24`
+- Build command: `pnpm build`
 - Public folder: `dist`
+
+## License
+
+MIT, see [LICENSE](LICENSE).

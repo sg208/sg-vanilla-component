@@ -1,0 +1,14 @@
+{
+  "last_sha": "0f7779f3930f87098edd29f6271deea68fd529a6",
+  "run_date": "2026-10-31",
+  "fingerprints": {
+    "AGENTS.md": "f58bb9516b8f47a483d30720b048c9c714e5829c7782bd12b404317ddf7cc842",
+    "CLAUDE.md": "336cc4fbf19beaada7ccf9986414fa91851a8d7a07dfb3ccbe800a69eed0ab49",
+    "readme.md": "08fec21ff7452b601a11b059c1f6456779ccc51cc8c786c1b00a7d92dd5cb2ac",
+    ".enggflo/learning.md": "81e1c5ca2930e298336e5a8767dc27a600b16b7dc0964158ebdb875c5a5a37f7",
+    ".enggflo/brain.md": "a64c949e26ea933d932206e74a6c773b8ef82d2b3a1618ea4c129dc897bfe766"
+  },
+  "llms_txt": {
+    "vite": "https://vite.dev/llms.txt"
+  }
+}

@@ -1,8 +1,9 @@
-import { resolve } from "path"
+import { resolve } from "node:path"
 import { defineConfig } from "vite"
 
-const root = resolve(__dirname, "src")
-const outDir = resolve(__dirname, "dist")
+const projectDir = import.meta.dirname
+const root = resolve(projectDir, "src")
+const outDir = resolve(projectDir, "dist")
 
 export default defineConfig({
   root,
