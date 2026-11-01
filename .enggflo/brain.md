@@ -16,7 +16,7 @@ UPDATE: per `brain.md` in the enggflo skill; NEVER delete Decisions.
 
 - Hosting: Cloudflare Worker with static assets (`wrangler.jsonc`) at sg-vanilla-component.engg.app; deploy `pnpm run deploy`.
 - Retired hosts (any claim the site runs there = wrong): Vercel · Netlify · Railway · Cloudflare Pages · engg.me.
-- Deploy env (names only): `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`; global `wrangler` v4.
+- Deploy env (names only): `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`; `wrangler` v4 (devDependency).
 - Demo only: bank logos load from `portal.bp.nu`; form posts to `<page>/result`, a static sample page.
 
 ## Open threads

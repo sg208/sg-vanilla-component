@@ -16,7 +16,7 @@
 - `pnpm build` — static build to `dist/`
 - `pnpm preview` — serve `dist/`
 - `pnpm test` — Vitest suite (`tests/*.test.js`, jsdom)
-- `pnpm run deploy` — `pnpm build && wrangler deploy` → Cloudflare Worker (static assets from `dist/`) at https://sg-vanilla-component.engg.app; needs global `wrangler` v4 + env `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` (names only) <!-- enggflo -->
+- `pnpm run deploy` — `pnpm build && wrangler deploy` → Cloudflare Worker (static assets from `dist/`) at https://sg-vanilla-component.engg.app; needs `wrangler` v4 (devDependency) + env `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` (names only) <!-- enggflo -->
 
 ## Rules
 
