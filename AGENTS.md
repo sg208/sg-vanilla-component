@@ -16,12 +16,15 @@
 - `pnpm build` — static build to `dist/`
 - `pnpm preview` — serve `dist/`
 - `pnpm test` — Vitest suite (`tests/*.test.js`, jsdom)
+- `pnpm run deploy` — `pnpm build && wrangler deploy` → Cloudflare Worker (static assets from `dist/`) at https://sg-vanilla-component.engg.app; needs global `wrangler` v4 + env `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` (names only) <!-- enggflo -->
 
 ## Rules
 
 - No framework, no runtime dependencies; pnpm only (no npm/yarn lockfiles); component lives in `src/main.js` (enforced_by: unverified).
 - Pages: `src/index.html` → `src/main.js` (`#app`), `src/result/` (`#sgvc-result`), `src/about/` (`#sgvc-about`), plain-HTML `src/accessibility/`, `src/privacy/`, `src/terms/` (→ `src/shared/legal-page.js`); each listed in `vite.config.js` `rollupOptions.input`.
-- Footer: `src/shared/footer.js` `mountFooter()`, called by every page script.
+- Footer: `src/shared/footer.js:50` `mountFooter()`, called by every page script; links Home · Accessibility · Privacy · Terms + GitHub repo (`REPO_URL`, `src/shared/footer.js:3`).
+- Hosting: Cloudflare Worker only (`wrangler.jsonc`, custom domain `sg-vanilla-component.engg.app`, `workers_dev: false`). Vercel · Netlify · Railway · Cloudflare Pages · engg.me = retired; NEVER reintroduce config for them. <!-- enggflo -->
+- Docs: `design.md` (architecture) · `conventions.md` (implicit style). <!-- enggflo -->
 
 ## Architecture
 
@@ -46,3 +49,4 @@
 ## References <!-- enggflo -->
 
 - vite — https://vite.dev/llms.txt (llms.txt)
+- vitest — https://vitest.dev/llms.txt (llms.txt)

@@ -11,7 +11,7 @@ Live demo: https://sg-vanilla-component.engg.app
 - Vitest + jsdom for tests
 - pnpm 10, Node 24
 
-The site also has accessibility, privacy and terms pages (`src/accessibility/`, `src/privacy/`, `src/terms/`) and a shared footer in `src/shared/footer.js`.
+The site also has accessibility, privacy and terms pages (`src/accessibility/`, `src/privacy/`, `src/terms/`) and a shared footer in `src/shared/footer.js` that links to those pages and to this GitHub repo.
 
 ## Run it locally
 
