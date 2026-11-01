@@ -31,5 +31,5 @@
 - Type: Manrope Variable only, weights 400–700. Sizes 14 / 16 / 20 / 28 / 32 / 40px; amount + bill figures use tabular numbers.
 - Tokens (`src/shared/theme.js`): light ground `#f3f5f7`, surface `#fff`, text `#1b1d1f`, muted `#5c6064`, control `#8a9096`, accent `#1d5fd6`; dark ground `#0f1113`, surface `#181b1f`, text `#f1f3f5`, muted `#a8adb3`, accent `#7eb0ff`. Component `colors` defaults read these with light fallbacks.
 - Layout: centred 1100px column, 16px gutters on phones, 32px from 640px; home grid one column → `5fr / 7fr` from 900px.
-- Bank picker: `<button aria-haspopup="listbox">` + `<ul role="listbox">` options; Arrow/Home/End/Enter/Space/Escape; out-of-range amount → `role="alert"` message, `aria-invalid` fields, picker disabled.
+- Bank picker: `<button aria-haspopup="listbox">` + `<ul role="listbox">` options (`aria-controls` while open); Arrow/Home/End move, Enter/Space pick, Escape/Tab/outside click close and refocus the button; amount fields select (not clear) on focus; out-of-range amount → `role="alert"` message, `aria-invalid` fields, picker disabled.
 - Motion: 120ms colour/transform feedback only; off under `prefers-reduced-motion`.

@@ -17,9 +17,10 @@ UPDATE: per `brain.md` in the enggflo skill; NEVER delete Decisions.
 - Hosting: Cloudflare Worker with static assets (`wrangler.jsonc`) at sg-vanilla-component.engg.app; deploy `pnpm run deploy`.
 - Retired hosts (any claim the site runs there = wrong): Vercel · Netlify · Railway · Cloudflare Pages · engg.me.
 - Deploy env (names only): `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`; `wrangler` v4 (devDependency).
-- Demo only: bank logos load from `portal.bp.nu`; form posts to `<page>/result`, a static sample page.
+- Demo only: banks show lettered marks (`portal.bp.nu` logo host is dead); demo form submits with GET (`formMethod`) to `/result/`, a static sample page, because static assets answer POST with 405. Component default stays POST.
 
 ## Open threads
 
 - `master` branch still exists on origin; delete once `main` is confirmed.
 - Pin policy (exact vs `^` + lockfile) → `.backlog/2026-10-31-1349-pin-floating-ranges.md`.
+- Deferred lows (release v0.2.0 review, 2026-11-01): wrangler devDependency tree incl. beta `miniflare` + install scripts (`package.json`, sec); fontsource pin/advisory check (sec); listbox has no type-ahead (`src/main.js`); px type sizes ignore browser font size (`src/shared/theme.js`); Continue appears without announcement (`src/main.js`); empty `#sgvc-bill` section with dangling `aria-labelledby` when `isError` (`src/index.html`); `summary.js` re-defaults locale/currency apart from `main.js`.
