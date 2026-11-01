@@ -20,15 +20,16 @@
 
 ## Rules
 
-- No framework, no runtime dependencies; pnpm only (no npm/yarn lockfiles); component lives in `src/main.js` (enforced_by: unverified).
+- No framework, no runtime dependencies; pnpm only (no npm/yarn lockfiles); component lives in `src/main.js` (+ `src/templates.js`, `src/component-styles.js`) (enforced_by: unverified).
+- Fonts self-hosted only (`@fontsource-variable/manrope`, bundled by Vite); NEVER a font CDN. Every page script calls `mountTheme()` (`src/shared/theme.js`); every page has skip link → `<header>` → `<main id="main">` with one `h1` (`tests/pages.test.js`).
 - Pages: `src/index.html` → `src/main.js` (`#app`), `src/result/` (`#sgvc-result`), `src/about/` (`#sgvc-about`), plain-HTML `src/accessibility/`, `src/privacy/`, `src/terms/` (→ `src/shared/legal-page.js`); each listed in `vite.config.js` `rollupOptions.input`.
-- Footer: `src/shared/footer.js:50` `mountFooter()`, called by every page script; links Home · Accessibility · Privacy · Terms + GitHub repo (`REPO_URL`, `src/shared/footer.js:3`).
+- Footer: `src/shared/footer.js:65` `mountFooter()`, called by every page script; links Home · Accessibility · Privacy · Terms + GitHub repo (`REPO_URL`, `src/shared/footer.js:3`).
 - Hosting: Cloudflare Worker only (`wrangler.jsonc`, custom domain `sg-vanilla-component.engg.app`, `workers_dev: false`). Vercel · Netlify · Railway · Cloudflare Pages · engg.me = retired; NEVER reintroduce config for them. <!-- enggflo -->
 - Docs: `design.md` (architecture) · `conventions.md` (implicit style). <!-- enggflo -->
 
 ## Architecture
 
-- `src/main.js:6` — `sgvc({ targetEl, colors, data })` renders styles + markup into `targetEl`; `data` (bank list + `options`) and the call sit at the file end.
+- `src/main.js:10` — `sgvc({ targetEl, colors, data, enableCloseOutsideElement, formMethod })` renders markup + scoped styles into `targetEl`; `data` (bank list + `options`) and the calls sit at the file end. Visual design: `design.md` § Visual design.
 - `vite.config.js` — `root: src`, `outDir: dist`, six HTML inputs.
 - `vitest.config.js` — jsdom env, `tests/**/*.test.js`; tests re-import `src/main.js` per case (`vi.resetModules`) since it self-invokes on import (`src/main.js`, end of file).
 - `form-result.html` (repo root) — unused sample, not in the build.
@@ -39,7 +40,7 @@
 |---|---|
 | runner | Vitest 5 + jsdom (`vitest.config.js`) |
 | command | `pnpm test` |
-| levels | unit ✓ (DOM, `tests/main.test.js`) · integration ✗ · e2e ✗ |
+| levels | unit ✓ (DOM, `tests/main.test.js`, `tests/footer.test.js`, `tests/pages.test.js`) · integration ✗ · e2e ✗ |
 | enforced_by | no CI workflows (`.github/` absent) |
 
 ## License

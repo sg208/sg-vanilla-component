@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta name="robots" content="noindex" />
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="robots" content="noindex" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>sg-vanilla-component > result</title>
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Sample result - sg-vanilla-component</title>
   </head>
   <body>
-    <main>
-      <div id="sgvc-result"></div>
+    <a class="sgvc-skip" href="#main">Skip to content</a>
+    <header class="sgvc-header">
+      <a class="sgvc-brand" href="/"><span class="sgvc-brand-mark" aria-hidden="true">sg</span><span class="sgvc-brand-name">sg-vanilla-component</span></a>
+    </header>
+    <main id="main" class="sgvc-shell" tabindex="-1">
+      <div id="sgvc-result" class="sgvc-card"></div>
     </main>
+    <script type="module" src="./result.js"></script>
   </body>
-  <script type="module" src="./result.js"></script>
 </html>

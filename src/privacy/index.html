@@ -5,10 +5,15 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
     <title>Privacy - sg-vanilla-component</title>
   </head>
   <body>
-    <main class="sgvc-legal">
+    <a class="sgvc-skip" href="#main">Skip to content</a>
+    <header class="sgvc-header">
+      <a class="sgvc-brand" href="/"><span class="sgvc-brand-mark" aria-hidden="true">sg</span><span class="sgvc-brand-name">sg-vanilla-component</span></a>
+    </header>
+    <main id="main" class="sgvc-legal" tabindex="-1">
       <h1>Privacy</h1>
       <p class="sgvc-updated">Last updated 1 November 2026</p>
 
@@ -20,18 +25,20 @@
       <h2>The demo form</h2>
       <p>
         The payment demo is not connected to a bank or a payment provider. If
-        you press the Verder (continue) button, your browser sends the amount and the bank
-        you picked to the sample result page on this same site. Nothing reads
-        or keeps that data, and no payment happens.
+        you press the Continue button, your browser opens the sample result
+        page on this same site with the amount and the bank you picked in the
+        page address. Like any address, it can show up in the host's request
+        logs. The site
+        itself does nothing with that data, and no payment happens.
       </p>
 
       <h2>Third parties your browser contacts</h2>
+      <p>
+        Your browser loads every page, script, style, font and icon from this
+        site's own address, sg-vanilla-component.engg.app, and contacts no
+        other host.
+      </p>
       <ul>
-        <li>
-          <strong>portal.bp.nu</strong> serves the bank logos in the payment
-          demo. Your browser requests them directly, so that server sees your
-          IP address and the usual request headers.
-        </li>
         <li>
           <strong>Cloudflare</strong> hosts the site. Like any host, it
           processes standard request data such as your IP address and user
@@ -39,8 +46,10 @@
         </li>
       </ul>
       <p>
-        The site loads no web fonts, maps or other external scripts. Links to
-        GitHub take you to GitHub, where its own privacy terms apply.
+        The Manrope typeface is served from this site, not from a font
+        service. The bank marks in the demo are letters drawn by the page, not
+        images from the banks. There are no maps, embeds or analytics. Links
+        to GitHub take you to GitHub, where its own privacy terms apply.
       </p>
 
       <h2>Questions</h2>
