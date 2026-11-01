@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="robots" content="noindex" />
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Accessibility - sg-vanilla-component</title>
+  </head>
+  <body>
+    <a class="sgvc-skip" href="#main">Skip to content</a>
+    <header class="sgvc-header">
+      <a class="sgvc-brand" href="/"><span class="sgvc-brand-mark" aria-hidden="true">sg</span><span class="sgvc-brand-name">sg-vanilla-component</span></a>
+    </header>
+    <main id="main" class="sgvc-legal" tabindex="-1">
+      <h1>Accessibility</h1>
+      <p class="sgvc-updated">Last updated 1 November 2026</p>
+
+      <p>
+        sg-vanilla-component is a small demo of a payment-option picker. I aim
+        for it to meet WCAG 2.2 level AA. It does not meet it everywhere yet;
+        the gaps I know about are listed below.
+      </p>
+
+      <h2>What is in place</h2>
+      <ul>
+        <li>Every page sets its language to English and has its own title.</li>
+        <li>
+          Every page has one heading 1, a header, a main landmark and a footer
+          with a labelled site navigation.
+        </li>
+        <li>
+          A "Skip to content" link is the first thing you reach with the Tab
+          key and jumps to the main content.
+        </li>
+        <li>
+          Links, buttons, fields and bank options show a visible focus outline
+          when you reach them with the keyboard.
+        </li>
+        <li>
+          Text meets a contrast ratio of at least 4.5:1 and controls at least
+          3:1, in both the light and the dark colour scheme. The site follows
+          your system setting for light or dark.
+        </li>
+        <li>
+          Pages reflow down to 320 pixels wide without scrolling sideways, and
+          buttons, fields and navigation links are at least 24 by 24 pixels.
+          Links inside running text follow the line height of that text.
+        </li>
+        <li>
+          If your system asks for reduced motion, the small transitions on
+          buttons and the bank list are switched off.
+        </li>
+        <li>
+          On the payment demo, the euro and cent fields are labelled "Euros"
+          and "Cents" and are tied to the note that gives the minimum and
+          maximum.
+        </li>
+        <li>
+          When the amount is out of range, the error is announced to screen
+          readers, the fields are marked invalid and the bank picker is
+          disabled until the amount is fixed.
+        </li>
+        <li>
+          The bank picker is a button that opens a list of options. Arrow
+          keys, Home and End move through the banks, Enter or Space picks one,
+          and Escape closes the list and returns focus to the button.
+          Tab or a click outside also closes it.
+        </li>
+        <li>Decorative icons are hidden from screen readers.</li>
+      </ul>
+
+      <h2>Known limitations</h2>
+      <ul>
+        <li>
+          The demo form leads to a sample result page, which only says that it
+          is a sample.
+        </li>
+      </ul>
+
+      <h2>Report a problem</h2>
+      <p>
+        If something on the site gets in your way, please
+        <a href="https://github.com/sg208/sg-vanilla-component/issues">open an issue on GitHub</a>. Tell me which page
+        you were on and what you were trying to do.
+      </p>
+    </main>
+    <script type="module" src="../shared/legal-page.js"></script>
+  </body>
+</html>
