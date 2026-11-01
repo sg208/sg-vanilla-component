@@ -1,3 +1,5 @@
+import { mountFooter } from "../shared/footer.js"
+
 function sgvc() {
   const container = document.querySelector("#sgvc-about")
 
@@ -11,3 +13,4 @@ function sgvc() {
 }
 
 sgvc()
+mountFooter()

@@ -11,10 +11,10 @@ UPDATE: per `brain.md` in the enggflo skill; NEVER delete Decisions.
 
 ## Context
 
+- Hosting: Cloudflare Worker with static assets (`wrangler.jsonc`) at sg-vanilla-component.engg.app; deploy `pnpm run deploy`.
 - Demo only: bank logos load from `portal.bp.nu`; form posts to `<page>/result`, a static sample page.
 
 ## Open threads
 
 - `master` branch still exists on origin; delete once `main` is confirmed.
-- Cloudflare Pages project build settings live in the dashboard: build command must change from `npm run build` to `pnpm build`, Node `24` (not verifiable from repo).
 - Pin policy (exact vs `^` + lockfile) → `.backlog/2026-10-31-1349-pin-floating-ranges.md`.

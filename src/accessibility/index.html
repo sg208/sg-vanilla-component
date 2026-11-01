@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="robots" content="noindex" />
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accessibility - sg-vanilla-component</title>
+  </head>
+  <body>
+    <main class="sgvc-legal">
+      <h1>Accessibility</h1>
+      <p class="sgvc-updated">Last updated 1 November 2026</p>
+
+      <p>
+        sg-vanilla-component is a small demo of a payment-option picker. I aim
+        for it to meet WCAG 2.2 level AA. It does not meet it everywhere yet;
+        the gaps I know about are listed below.
+      </p>
+
+      <h2>What is in place</h2>
+      <ul>
+        <li>Every page sets its language to English and has its own title.</li>
+        <li>
+          The accessibility, privacy and terms pages use a single heading 1, a
+          main landmark and a footer, and reflow down to 360 pixels wide.
+        </li>
+        <li>
+          Footer links show a visible focus outline when you reach them with the
+          keyboard.
+        </li>
+        <li>
+          On the payment demo, the bank picker opens with Enter or Space and
+          moves focus to the first bank in the list.
+        </li>
+        <li>The edit-amount button has the accessible name "Edit amount".</li>
+        <li>Decorative icons are hidden from screen readers.</li>
+      </ul>
+
+      <h2>Known limitations</h2>
+      <ul>
+        <li>
+          The payment demo has no heading 1; its first heading is a heading 2.
+        </li>
+        <li>
+          The two amount fields (euros and cents) have no label, so a screen
+          reader announces them only as number fields.
+        </li>
+        <li>
+          The bank picker is built from plain elements without listbox or
+          combobox roles, so assistive technology does not announce it as a
+          list of options.
+        </li>
+        <li>
+          The demo form posts to a sample result page, which only says that it
+          is a sample.
+        </li>
+      </ul>
+
+      <h2>Report a problem</h2>
+      <p>
+        If something on the site gets in your way, please
+        <a href="https://github.com/sg208/sg-vanilla-component/issues">open an issue on GitHub</a>. Tell me which page
+        you were on and what you were trying to do.
+      </p>
+    </main>
+    <script type="module" src="../shared/legal-page.js"></script>
+  </body>
+</html>
