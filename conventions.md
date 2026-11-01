@@ -9,7 +9,7 @@
 ## Style
 
 - No lint/format config present; follow existing files: double quotes, no semicolons (`src/shared/*.js`, `vite.config.js`).
-- Styles = template strings injected via `<style>` from JS; NEVER separate `.css` files.
+- Styles = template strings injected via `<style>` from JS; NEVER separate `.css` files (the only CSS import is the fontsource font in `src/shared/theme.js`). Colours via tokens in `src/shared/theme.js`.
 - ES modules only (`package.json` `"type": "module"`).
 
 ## Git

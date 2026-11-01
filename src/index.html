@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta name="robots" content="noindex" />
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="robots" content="noindex" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>sg-vanilla-component</title>
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Pay your bill - sg-vanilla-component</title>
   </head>
   <body>
-    <main>
-      <div id="app"></div>
+    <a class="sgvc-skip" href="#main">Skip to content</a>
+    <header class="sgvc-header">
+      <a class="sgvc-brand" href="/"><span class="sgvc-brand-mark" aria-hidden="true">sg</span><span class="sgvc-brand-name">sg-vanilla-component</span></a>
+    </header>
+    <main id="main" class="sgvc-shell" tabindex="-1">
+      <div class="sgvc-pay">
+        <div class="sgvc-intro">
+          <h1>Pay your bill</h1>
+          <p class="sgvc-lede">
+            A demo payment step. Set the amount, pick a Dutch bank and continue.
+            No money moves.
+          </p>
+        </div>
+        <section id="app" aria-label="Payment"></section>
+        <section id="sgvc-bill" aria-labelledby="sgvc-bill-title"></section>
+      </div>
     </main>
+    <script type="module" src="./main.js"></script>
   </body>
-  <script type="module" src="./main.js"></script>
 </html>

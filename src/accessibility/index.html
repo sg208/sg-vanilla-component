@@ -5,10 +5,15 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
     <title>Accessibility - sg-vanilla-component</title>
   </head>
   <body>
-    <main class="sgvc-legal">
+    <a class="sgvc-skip" href="#main">Skip to content</a>
+    <header class="sgvc-header">
+      <a class="sgvc-brand" href="/"><span class="sgvc-brand-mark" aria-hidden="true">sg</span><span class="sgvc-brand-name">sg-vanilla-component</span></a>
+    </header>
+    <main id="main" class="sgvc-legal" tabindex="-1">
       <h1>Accessibility</h1>
       <p class="sgvc-updated">Last updated 1 November 2026</p>
 
@@ -22,37 +27,57 @@
       <ul>
         <li>Every page sets its language to English and has its own title.</li>
         <li>
-          The accessibility, privacy and terms pages use a single heading 1, a
-          main landmark and a footer, and reflow down to 360 pixels wide.
+          Every page has one heading 1, a header, a main landmark and a footer
+          with a labelled site navigation.
         </li>
         <li>
-          Footer links show a visible focus outline when you reach them with the
-          keyboard.
+          A "Skip to content" link is the first thing you reach with the Tab
+          key and jumps to the main content.
         </li>
         <li>
-          On the payment demo, the bank picker opens with Enter or Space and
-          moves focus to the first bank in the list.
+          Links, buttons, fields and bank options show a visible focus outline
+          when you reach them with the keyboard.
         </li>
-        <li>The edit-amount button has the accessible name "Edit amount".</li>
+        <li>
+          Text meets a contrast ratio of at least 4.5:1 and controls at least
+          3:1, in both the light and the dark colour scheme. The site follows
+          your system setting for light or dark.
+        </li>
+        <li>
+          Pages reflow down to 320 pixels wide without scrolling sideways, and
+          interactive targets are at least 24 by 24 pixels.
+        </li>
+        <li>
+          If your system asks for reduced motion, the small transitions on
+          buttons and the bank list are switched off.
+        </li>
+        <li>
+          On the payment demo, the euro and cent fields are labelled "Euros"
+          and "Cents" and are tied to the note that gives the minimum and
+          maximum.
+        </li>
+        <li>
+          When the amount is out of range, the error is announced to screen
+          readers, the fields are marked invalid and the bank picker is
+          disabled until the amount is fixed.
+        </li>
+        <li>
+          The bank picker is a button that opens a list of options. Arrow
+          keys, Home and End move through the banks, Enter or Space picks one,
+          and Escape closes the list and returns focus to the button.
+        </li>
         <li>Decorative icons are hidden from screen readers.</li>
       </ul>
 
       <h2>Known limitations</h2>
       <ul>
         <li>
-          The payment demo has no heading 1; its first heading is a heading 2.
+          The amount fields clear when they receive focus, so you type the
+          amount again rather than editing it. Leaving a field empty restores
+          the previous value.
         </li>
         <li>
-          The two amount fields (euros and cents) have no label, so a screen
-          reader announces them only as number fields.
-        </li>
-        <li>
-          The bank picker is built from plain elements without listbox or
-          combobox roles, so assistive technology does not announce it as a
-          list of options.
-        </li>
-        <li>
-          The demo form posts to a sample result page, which only says that it
+          The demo form leads to a sample result page, which only says that it
           is a sample.
         </li>
       </ul>

@@ -44,23 +44,62 @@ describe("payment component", () => {
     expect(query(".sgvc-selected-provider-text").textContent).toContain("ING")
     expect(query(".sgvc-form-btn-submit")).not.toBeNull()
     expect(query(".sgvc-payment-list")).toBeNull()
-    expect(query("#sgvc-form").getAttribute("method")).toBe("POST")
+    expect(query("#sgvc-form").getAttribute("method")).toBe("GET")
+    expect(query("#sgvc-form").getAttribute("action")).toMatch(/\/result\/$/)
   })
 
   it("flags an amount below the minimum and clears it when valid", () => {
     setAmount("50", "00")
     expect(query("#--sgvc-submit-amount").value).toBe("5000")
-    expect(query("sgvcerror")?.textContent).toContain("minimumbedrag")
+    const error = query("#sgvc-amount-error")
+    expect(error.getAttribute("role")).toBe("alert")
+    expect(error.textContent).toContain("Enter at least")
+    expect(query("#sgvc-formfield-bigamount").getAttribute("aria-invalid")).toBe("true")
+    expect(query(".sgvc-selected-provider").disabled).toBe(true)
     expect(query(".sgvc-selected-provider").classList.contains("sgvc-disabled")).toBe(true)
 
     setAmount("90", "00")
-    expect(query("sgvcerror")).toBeNull()
+    expect(query("#sgvc-amount-error").textContent).toBe("")
+    expect(query("#sgvc-formfield-bigamount").getAttribute("aria-invalid")).toBe("false")
+    expect(query(".sgvc-selected-provider").disabled).toBe(false)
     expect(query(".sgvc-selected-provider").classList.contains("sgvc-disabled")).toBe(false)
   })
 
   it("flags an amount above the maximum", () => {
     setAmount("120", "00")
-    expect(query("sgvcerror")?.textContent).toContain("maximum")
+    expect(query("#sgvc-amount-error").textContent).toContain("at most")
+  })
+
+  it("labels the amount fields", () => {
+    expect(query("#sgvc-formfield-bigamount").getAttribute("aria-label")).toBe("Euros")
+    expect(query("#sgvc-formfield-smallamount").getAttribute("aria-label")).toBe("Cents")
+    expect(query(".sgvc-btn-edit-amount").getAttribute("type")).toBe("button")
+  })
+
+  it("exposes the bank picker as a listbox driven by the keyboard", () => {
+    const trigger = query(".sgvc-selected-provider")
+    expect(trigger.tagName).toBe("BUTTON")
+    expect(trigger.getAttribute("aria-haspopup")).toBe("listbox")
+    trigger.click()
+    expect(trigger.getAttribute("aria-expanded")).toBe("true")
+    const list = query(".sgvc-payment-list")
+    expect(list.getAttribute("role")).toBe("listbox")
+    expect(document.activeElement.id).toBe("ABNANL2A")
+
+    const press = (key) =>
+      document.activeElement.dispatchEvent(new KeyboardEvent("keydown", { key, bubbles: true }))
+    press("ArrowDown")
+    expect(document.activeElement.id).toBe("ASNBNL21")
+    press("Enter")
+    expect(query("#--sgvc-submit-bank-id").value).toBe("ASNBNL21")
+    expect(document.activeElement).toBe(trigger)
+    expect(trigger.getAttribute("aria-expanded")).toBe("false")
+
+    trigger.click()
+    expect(query('[id="ASNBNL21"]').getAttribute("aria-selected")).toBe("true")
+    press("Escape")
+    expect(query(".sgvc-payment-list")).toBeNull()
+    expect(document.activeElement).toBe(trigger)
   })
 })
 
