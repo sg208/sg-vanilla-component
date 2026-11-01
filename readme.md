@@ -25,7 +25,7 @@ pnpm preview   # serve dist/
 
 ## Deploy
 
-The site is a Cloudflare Worker that serves `dist/` as static assets, set up in `wrangler.jsonc`. `pnpm run deploy` builds and runs `wrangler deploy`. You need `wrangler` v4 installed globally and `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` set in the environment.
+The site is a Cloudflare Worker that serves `dist/` as static assets, set up in `wrangler.jsonc`. `pnpm run deploy` builds and runs `wrangler deploy`. Wrangler 4 is a dev dependency, so you only need `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` set in the environment.
 
 ## License
 
