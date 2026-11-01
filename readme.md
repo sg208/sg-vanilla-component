@@ -1,35 +1,31 @@
 # sg-vanilla-component
 
-This is a simple payment option sample with Vanilla JS and simple CSS in JS, no front end frameworks. The only missing part is the backend.
+A payment-option picker built with plain JavaScript and CSS written in JS, no framework. You pick an amount, choose a Dutch bank from a dropdown and submit. There is no backend: the form posts to a static sample result page.
 
-## Stacks
+Live demo: https://sg-vanilla-component.engg.app
 
-- Vanilla JS
-- CSS in JS (single file component)
-- Vite (bundler)
-- Vitest + jsdom (tests)
-- Deployed as a Cloudflare Worker (static assets)
+## Stack
 
-## Demo
+- Vanilla JS (ES modules), with the component and its styles in `src/main.js`
+- Vite 8, multi-page build with `src/` as the root
+- Vitest + jsdom for tests
+- pnpm 10, Node 24
 
-- https://sg-vanilla-component.engg.app
+The site also has accessibility, privacy and terms pages (`src/accessibility/`, `src/privacy/`, `src/terms/`) and a shared footer in `src/shared/footer.js`.
 
-The Worker runs on the sg208 account and serves `dist/` as configured in `wrangler.jsonc`. `pnpm run deploy` builds and runs `wrangler deploy`; it needs `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` in the environment.
-
-## Development
+## Run it locally
 
 ```bash
 pnpm install
 pnpm dev       # dev server
-pnpm build     # static build to dist/
 pnpm test      # Vitest suite
+pnpm build     # static build to dist/
+pnpm preview   # serve dist/
 ```
 
-## Deployment Notes
+## Deploy
 
-- Node version: `24`
-- Build command: `pnpm build`
-- Public folder: `dist`
+The site is a Cloudflare Worker that serves `dist/` as static assets, set up in `wrangler.jsonc`. `pnpm run deploy` builds and runs `wrangler deploy`. You need `wrangler` v4 installed globally and `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` set in the environment.
 
 ## License
 

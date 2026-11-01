@@ -5,7 +5,7 @@
 ## Project
 
 - PURPOSE: demo payment-option picker (Dutch bank list, amount editor) in plain JS with CSS-in-JS; no framework, no backend.
-- STACK: vanilla JS (ES modules) · Vite 8 (multi-page, `root: src`) · Vitest 5 + jsdom · pnpm 10 · Node 24 (`.node-version`) · static output `dist/` · deployed to Cloudflare Pages (`readme.md`).
+- STACK: vanilla JS (ES modules) · Vite 8 (multi-page, `root: src`) · Vitest 5 + jsdom · pnpm 10 · Node 24 (`.node-version`) · static output `dist/` · deployed as a Cloudflare Worker with static assets (`wrangler.jsonc`, `pnpm run deploy`) at https://sg-vanilla-component.engg.app.
 - Branches: `develop` = work branch; `main` = default + release; `master` = legacy, kept.
 
 ## Commands
@@ -20,13 +20,14 @@
 ## Rules
 
 - No framework, no runtime dependencies; pnpm only (no npm/yarn lockfiles); component lives in `src/main.js` (enforced_by: unverified).
-- Pages: `src/index.html` → `src/main.js` (`#app`), `src/result/` (`#sgvc-result`), `src/about/` (`#sgvc-about`); each listed in `vite.config.js` `rollupOptions.input`.
+- Pages: `src/index.html` → `src/main.js` (`#app`), `src/result/` (`#sgvc-result`), `src/about/` (`#sgvc-about`), plain-HTML `src/accessibility/`, `src/privacy/`, `src/terms/` (→ `src/shared/legal-page.js`); each listed in `vite.config.js` `rollupOptions.input`.
+- Footer: `src/shared/footer.js` `mountFooter()`, called by every page script.
 
 ## Architecture
 
-- `src/main.js:4` — `sgvc({ targetEl, colors, data })` renders styles + markup into `targetEl`; `data` (bank list + `options`) and the call sit at the file end.
-- `vite.config.js` — `root: src`, `outDir: dist`, three HTML inputs.
-- `vitest.config.js` — jsdom env, `tests/**/*.test.js`; tests re-import `src/main.js` per case (`vi.resetModules`) since it self-invokes on import (`src/main.js:861`).
+- `src/main.js:6` — `sgvc({ targetEl, colors, data })` renders styles + markup into `targetEl`; `data` (bank list + `options`) and the call sit at the file end.
+- `vite.config.js` — `root: src`, `outDir: dist`, six HTML inputs.
+- `vitest.config.js` — jsdom env, `tests/**/*.test.js`; tests re-import `src/main.js` per case (`vi.resetModules`) since it self-invokes on import (`src/main.js`, end of file).
 - `form-result.html` (repo root) — unused sample, not in the build.
 
 ## Test profile
