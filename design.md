@@ -11,7 +11,7 @@
 - `src/public/favicon.svg` — "sg" mark, copied to `dist/`.
 - `src/shared/footer.js:65` — `mountFooter()` injects footer styles + `<footer>` landmark: Home · Accessibility · Privacy · Terms · GitHub repo (`src/shared/footer.js:3`).
 - `vite.config.js` — `root: src`, `outDir: dist`, six `rollupOptions.input` pages.
-- `wrangler.jsonc` — Worker `sg-vanilla-component`, `assets.directory: dist`, `not_found_handling: 404-page`, custom domain `sg-vanilla-component.engg.app`, `workers_dev: false`, `preview_urls: false`.
+- `wrangler.jsonc` — Worker `sg-vanilla-component`, `assets.directory: dist`, `not_found_handling: none` (no 404 page is built), custom domain `sg-vanilla-component.engg.app`, `workers_dev: false`, `preview_urls: false`.
 
 ## Data flow
 

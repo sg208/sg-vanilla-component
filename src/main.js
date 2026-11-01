@@ -87,11 +87,13 @@ const sgvc = ({
   }
 
   // BANK LIST (listbox) --------------------
+  const listId = `sgvc-bank-list-${targetEl.replace(/[^\w-]/g, "")}`
   const isListOpen = () => Boolean(query(".sgvc-payment-list"))
 
   const closeList = ({ shouldFocusTrigger = false } = {}) => {
     container.querySelectorAll(".sgvc-payment-list, .sgvc-overlay").forEach((el) => el.remove())
     trigger.setAttribute("aria-expanded", "false")
+    trigger.removeAttribute("aria-controls")
     if (shouldFocusTrigger) trigger.focus()
   }
 
@@ -119,6 +121,8 @@ const sgvc = ({
       " ": () => event.target.click(),
     }
     if (event.key === "Tab") {
+      // Move focus to the trigger first so Tab continues from there.
+      trigger.focus()
       closeList()
       return
     }
@@ -132,6 +136,7 @@ const sgvc = ({
     const list = document.createElement("ul")
     list.className = "sgvc-payment-list"
     list.setAttribute("role", "listbox")
+    list.id = listId
     list.setAttribute("aria-labelledby", "sgvc-bank-label")
     list.innerHTML = data.providers
       .map(
@@ -143,6 +148,7 @@ const sgvc = ({
       .join("")
     query(".sgvc-payments-container").insertBefore(list, trigger.nextSibling)
     trigger.setAttribute("aria-expanded", "true")
+    trigger.setAttribute("aria-controls", listId)
 
     list.querySelectorAll("li").forEach((item) => {
       item.addEventListener("click", () => {
@@ -157,7 +163,7 @@ const sgvc = ({
       const overlay = document.createElement("div")
       overlay.className = "sgvc-overlay"
       overlay.setAttribute("aria-hidden", "true")
-      overlay.addEventListener("click", () => closeList())
+      overlay.addEventListener("click", () => closeList({ shouldFocusTrigger: true }))
       container.appendChild(overlay)
     }
 
@@ -222,7 +228,7 @@ const sgvc = ({
   const handleAmountFocus = (event) => {
     const field = event.target
     field.dataset.originalValue = field.value
-    field.value = ""
+    field.select()
     query(".sgvc-amount-only").classList.add("sgvc-focus-amount")
   }
 

@@ -213,7 +213,17 @@ export const buildStyles = (scope, colors) => `
     background: var(--sgvc-surface);
     box-shadow: var(--shadow-float, 0 12px 32px rgba(15, 23, 42, 0.14));
   }
-  ${scope} .sgvc-payment-list.sgvc-list-inline { top: 72px; }
+  ${scope} .sgvc-visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
   ${scope} .sgvc-payment-list li {
     display: flex;
     align-items: center;

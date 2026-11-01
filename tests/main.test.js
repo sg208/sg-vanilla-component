@@ -103,6 +103,50 @@ describe("payment component", () => {
   })
 })
 
+describe("payment component focus handling", () => {
+  beforeEach(mountComponent)
+
+  it("keeps the amount when a field gets focus", () => {
+    const bigField = query("#sgvc-formfield-bigamount")
+    bigField.dispatchEvent(new Event("focus"))
+    expect(bigField.value).toBe("99")
+  })
+
+  it("returns focus to the trigger when the list closes by Tab or outside click", () => {
+    const trigger = query(".sgvc-selected-provider")
+    trigger.click()
+    expect(trigger.getAttribute("aria-controls")).toBe(query(".sgvc-payment-list").id)
+    document.activeElement.dispatchEvent(new KeyboardEvent("keydown", { key: "Tab", bubbles: true }))
+    expect(query(".sgvc-payment-list")).toBeNull()
+    expect(document.activeElement).toBe(trigger)
+    expect(trigger.hasAttribute("aria-controls")).toBe(false)
+
+    trigger.click()
+    query(".sgvc-overlay").click()
+    expect(query(".sgvc-payment-list")).toBeNull()
+    expect(document.activeElement).toBe(trigger)
+  })
+})
+
+describe("fixed amount", () => {
+  it("gives screen readers the formatted amount", async () => {
+    vi.resetModules()
+    document.body.innerHTML = '<div id="app"></div>'
+    const { renderMain } = await import("../src/templates.js")
+    document.body.innerHTML = renderMain({
+      currencySymbol: "€",
+      bigAmount: 100,
+      smallAmount: "00",
+      hasMinimumCharge: false,
+      placeholderText: "Choose your bank",
+      maximumText: "€ 100,00",
+      hiddenFields: {},
+    })
+    expect(query(".sgvc-formfield-bigamount").getAttribute("aria-hidden")).toBe("true")
+    expect(query(".sgvc-visually-hidden").textContent).toBe("€ 100,00")
+  })
+})
+
 describe("static pages", () => {
   it("renders the result page", async () => {
     vi.resetModules()

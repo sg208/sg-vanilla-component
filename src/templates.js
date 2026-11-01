@@ -30,8 +30,9 @@ const renderEditableAmount = ({ bigAmount, smallAmount }) => `
     autocomplete="off" value="${smallAmount}" min="0" max="99" step="1" size="2"
     aria-label="Cents" aria-describedby="sgvc-amount-note sgvc-amount-error" />`
 
-const renderFixedAmount = ({ bigAmount, smallAmount }) => `
-  <span class="sgvc-formfield-bigamount">${bigAmount}</span><span class="sgvc-formfield-smallamount">${smallAmount}</span>`
+const renderFixedAmount = ({ bigAmount, smallAmount, maximumText }) => `
+  <span class="sgvc-formfield-bigamount" aria-hidden="true">${bigAmount}</span><span class="sgvc-formfield-smallamount" aria-hidden="true">${smallAmount}</span>
+  <span class="sgvc-visually-hidden">${maximumText}</span>`
 
 const renderPencilButton = () => `
   <button type="button" class="sgvc-btn-edit-amount" aria-label="Edit amount">${pencilIcon}</button>`

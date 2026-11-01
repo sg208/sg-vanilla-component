@@ -45,7 +45,8 @@
         </li>
         <li>
           Pages reflow down to 320 pixels wide without scrolling sideways, and
-          interactive targets are at least 24 by 24 pixels.
+          buttons, fields and navigation links are at least 24 by 24 pixels.
+          Links inside running text follow the line height of that text.
         </li>
         <li>
           If your system asks for reduced motion, the small transitions on
@@ -65,17 +66,13 @@
           The bank picker is a button that opens a list of options. Arrow
           keys, Home and End move through the banks, Enter or Space picks one,
           and Escape closes the list and returns focus to the button.
+          Tab or a click outside also closes it.
         </li>
         <li>Decorative icons are hidden from screen readers.</li>
       </ul>
 
       <h2>Known limitations</h2>
       <ul>
-        <li>
-          The amount fields clear when they receive focus, so you type the
-          amount again rather than editing it. Leaving a field empty restores
-          the previous value.
-        </li>
         <li>
           The demo form leads to a sample result page, which only says that it
           is a sample.
