@@ -30,12 +30,18 @@ describe("footer", () => {
     )
   })
 
-  it("links to the GitHub repo with a name that says GitHub", () => {
-    const repoLink = document.querySelector(
-      'footer a[href="https://github.com/sg208/sg-vanilla-component"]',
-    )
-    expect(repoLink?.textContent).toContain("GitHub")
-    expect(repoLink?.getAttribute("target")).toBeNull()
+  it("links to the GitHub repo once, as a labelled icon that opens a new tab", () => {
+    const githubLinks = document.querySelectorAll('footer a[href*="github.com"]')
+    expect(githubLinks.length).toBe(1)
+    const repoLink = githubLinks[0]
+    expect(repoLink.getAttribute("href")).toBe("https://github.com/sg208/sg-vanilla-component")
+    expect(repoLink.getAttribute("aria-label")).toBe("Source code on GitHub (opens in a new tab)")
+    expect(repoLink.textContent.trim()).toBe("")
+    expect(repoLink.getAttribute("target")).toBe("_blank")
+    expect(repoLink.getAttribute("rel")).toBe("noopener noreferrer")
+    const icon = repoLink.querySelector("svg")
+    expect(icon?.getAttribute("aria-hidden")).toBe("true")
+    expect(icon?.getAttribute("focusable")).toBe("false")
   })
 
   it("does not add a second footer when mounted twice", async () => {

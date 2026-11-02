@@ -26,3 +26,8 @@ dist-ssr
 # wrangler
 .wrangler/
 .taste-skill/
+
+# local agent tooling (never published)
+.enggflo/
+.impeccable/
+.rtk/

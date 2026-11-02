@@ -33,7 +33,7 @@ describe.each(pages)("$name page", (page) => {
     expect(document.querySelector("main").id).toBe("main")
   })
 
-  it("mounts the footer with the legal links and the GitHub repo", async () => {
+  it("mounts the footer with the legal links and the GitHub repo icon", async () => {
     await loadPage(page)
     const hrefs = [...document.querySelectorAll("footer a")].map((link) => link.getAttribute("href"))
     expect(hrefs).toEqual(
