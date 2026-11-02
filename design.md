@@ -9,7 +9,7 @@
 - `src/result/result.js`, `src/about/about.js` — stub pages rendering an `h1` card into `#sgvc-result` / `#sgvc-about`, then `mountFooter()`.
 - `src/accessibility/`, `src/privacy/`, `src/terms/` — plain-HTML legal pages (`<main id="main" class="sgvc-legal">`); theme, styles + footer via `src/shared/legal-page.js`.
 - `src/public/favicon.svg` — "sg" mark, copied to `dist/`.
-- `src/shared/footer.js:65` — `mountFooter()` injects footer styles + `<footer>` landmark: Home · Accessibility · Privacy · Terms · GitHub repo (`src/shared/footer.js:3`).
+- `src/shared/footer.js:72` — `mountFooter()` injects footer styles + `<footer>` landmark: Home · Accessibility · Privacy · Terms · GitHub icon link to the repo (`src/shared/footer.js:4`).
 - `vite.config.js` — `root: src`, `outDir: dist`, six `rollupOptions.input` pages.
 - `wrangler.jsonc` — Worker `sg-vanilla-component`, `assets.directory: dist`, `not_found_handling: none` (no 404 page is built), custom domain `sg-vanilla-component.engg.app`, `workers_dev: false`, `preview_urls: false`.
 

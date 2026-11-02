@@ -16,7 +16,7 @@ Live demo: https://sg-vanilla-component.engg.app
 
 The home page is a two-column payment screen on a pale grey ground: the page title and a "Your bill" card on the left, the payment card on the right. On a phone the payment card comes straight after the title. White cards have 20px corners, the one accent is a cobalt blue used for the selected bank, focus outlines and the Continue button, and banks show as lettered marks on a pale blue tile. Light and dark colours follow the system setting. Shared tokens, the skip link and the header styles live in `src/shared/theme.js`; `design.md` has the details.
 
-The site also has accessibility, privacy and terms pages (`src/accessibility/`, `src/privacy/`, `src/terms/`) and a shared footer in `src/shared/footer.js` that links to those pages and to this GitHub repo.
+The site also has accessibility, privacy and terms pages (`src/accessibility/`, `src/privacy/`, `src/terms/`) and a shared footer in `src/shared/footer.js` that links to those pages, plus a small GitHub icon that links to this repo.
 
 ## Run it locally
 
