@@ -1,0 +1,14 @@
+dist
+node_modules
+pnpm-lock.yaml
+.wrangler
+.taste-skill
+.done
+.rtk
+.enggflo
+src/about/
+src/privacy/
+src/terms/
+src/accessibility/
+wrangler.jsonc
+AGENTS.md

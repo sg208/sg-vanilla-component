@@ -2,7 +2,7 @@
 
 ## Architecture
 
-- `src/main.js:10` — `sgvc({ targetEl, colors, data, enableCloseOutsideElement, formMethod })`: renders form markup (`src/templates.js`) into `#app`, injects scoped styles (`src/component-styles.js`) into `<head>`; bank data (`imgurl` optional, none in mock data) + calls at file end.
+- `src/main.js:8` — `sgvc({ targetEl, colors, data, enableCloseOutsideElement, formMethod })`: renders form markup (`src/templates.js`) into `#app`, injects scoped styles (`src/component-styles.js`) into `<head>`; demo bank data in `src/demo-data.js` (`imgurl` optional, none in mock data); the calls sit at the file end.
 - `src/summary.js` — `renderBillSummary()` fills `#sgvc-bill` ("Your bill") from the same `data`.
 - `src/shared/theme.js` — `mountTheme()`: Manrope import (`@fontsource-variable/manrope/wght.css`), colour tokens light + dark (`prefers-color-scheme`), reset, skip link, header, `.sgvc-shell` / `.sgvc-pay` / `.sgvc-card` layout. Called by every page script.
 - `src/index.html` — skip link → `<header>` brand → `<main id="main">` with `h1` "Pay your bill", `#app` (payment section) and `#sgvc-bill`.

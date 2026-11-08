@@ -7,14 +7,21 @@ const pages = [
   { name: "home", html: "index.html", script: "../src/main.js" },
   { name: "result", html: "result/index.html", script: "../src/result/result.js" },
   { name: "about", html: "about/index.html", script: "../src/about/about.js" },
-  { name: "accessibility", html: "accessibility/index.html", script: "../src/shared/legal-page.js" },
+  {
+    name: "accessibility",
+    html: "accessibility/index.html",
+    script: "../src/shared/legal-page.js",
+  },
   { name: "privacy", html: "privacy/index.html", script: "../src/shared/legal-page.js" },
   { name: "terms", html: "terms/index.html", script: "../src/shared/legal-page.js" },
 ]
 
 const loadPage = async ({ html, script }) => {
   vi.resetModules()
-  const page = new DOMParser().parseFromString(readFileSync(resolve(srcDir, html), "utf8"), "text/html")
+  const page = new DOMParser().parseFromString(
+    readFileSync(resolve(srcDir, html), "utf8"),
+    "text/html",
+  )
   page.querySelectorAll("script").forEach((tag) => tag.remove())
   document.head.innerHTML = page.head.innerHTML
   document.body.innerHTML = page.body.innerHTML
@@ -35,7 +42,9 @@ describe.each(pages)("$name page", (page) => {
 
   it("mounts the footer with the legal links and the GitHub repo icon", async () => {
     await loadPage(page)
-    const hrefs = [...document.querySelectorAll("footer a")].map((link) => link.getAttribute("href"))
+    const hrefs = [...document.querySelectorAll("footer a")].map((link) =>
+      link.getAttribute("href"),
+    )
     expect(hrefs).toEqual(
       expect.arrayContaining([
         "/accessibility/",
