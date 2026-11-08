@@ -72,8 +72,8 @@
 
 ## Gotchas
 
-- `src/main.js:311` — module calls `sgvc(...)` on import; tests re-import per case (`tests/main.test.js:4` `vi.resetModules`)
-- `src/main.js:15` — component default `formMethod = "POST"`; demo passes `"GET"` (`src/main.js:311`); POST → 405 on static assets (`src/main.js:308`)
+- `src/main.js:279` — module calls `sgvc(...)` on import; tests re-import per case (`tests/main.test.js:4` `vi.resetModules`)
+- `src/main.js:13` — component default `formMethod = "POST"`; demo passes `"GET"` (`src/main.js:279`); POST → 405 on static assets (`src/main.js:276`)
 - `vite.config.js` `rollupOptions.input` — a page missing here is not emitted to `dist/`
 - `wrangler.jsonc` `assets.not_found_handling: "none"` — no 404 page is built
 - `src/shared/footer.js:4` — `REPO_URL` hardcoded to `sg208/sg-vanilla-component`
