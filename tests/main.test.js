@@ -70,6 +70,20 @@ describe("payment component", () => {
     expect(query("#sgvc-amount-error").textContent).toContain("at most")
   })
 
+  it("pads a single-digit cents entry to two digits on blur", () => {
+    const smallField = query("#sgvc-formfield-smallamount")
+    smallField.dispatchEvent(new Event("focus"))
+    smallField.value = "5"
+    smallField.dispatchEvent(new Event("blur"))
+    expect(smallField.value).toBe("05")
+    expect(query("#--sgvc-submit-amount").value).toBe("9905")
+  })
+
+  it("focuses the euros field from the edit-amount button", () => {
+    query(".sgvc-btn-edit-amount").click()
+    expect(document.activeElement).toBe(query("#sgvc-formfield-bigamount"))
+  })
+
   it("labels the amount fields", () => {
     expect(query("#sgvc-formfield-bigamount").getAttribute("aria-label")).toBe("Euros")
     expect(query("#sgvc-formfield-smallamount").getAttribute("aria-label")).toBe("Cents")
@@ -116,7 +130,9 @@ describe("payment component focus handling", () => {
     const trigger = query(".sgvc-selected-provider")
     trigger.click()
     expect(trigger.getAttribute("aria-controls")).toBe(query(".sgvc-payment-list").id)
-    document.activeElement.dispatchEvent(new KeyboardEvent("keydown", { key: "Tab", bubbles: true }))
+    document.activeElement.dispatchEvent(
+      new KeyboardEvent("keydown", { key: "Tab", bubbles: true }),
+    )
     expect(query(".sgvc-payment-list")).toBeNull()
     expect(document.activeElement).toBe(trigger)
     expect(trigger.hasAttribute("aria-controls")).toBe(false)
@@ -152,7 +168,7 @@ describe("static pages", () => {
     vi.resetModules()
     document.body.innerHTML = '<div id="sgvc-result"></div>'
     await import("../src/result/result.js")
-    expect(query("#sgvc-result h1")?.textContent).toContain("result page")
+    expect(query("#sgvc-result h1")?.textContent).toContain("Sample result page")
   })
 
   it("renders the about page", async () => {

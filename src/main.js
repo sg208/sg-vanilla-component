@@ -1,12 +1,10 @@
 import { buildStyles, defaultColors } from "./component-styles.js"
+import { demoData } from "./demo-data.js"
 import { mountFooter } from "./shared/footer.js"
 import { mountTheme } from "./shared/theme.js"
 import { renderBillSummary } from "./summary.js"
 import { renderBankMark, renderMain, renderPaymentNotAvailable } from "./templates.js"
 
-// ==================================================================
-// --------------------------- The plugin ---------------------------
-// ==================================================================
 const sgvc = ({
   targetEl = "#app",
   colors = {},
@@ -40,8 +38,7 @@ const sgvc = ({
       .find((part) => part.type === "currency")?.value ?? ""
   const bigAmount = Math.floor(options.amountToCharge / 100)
   const smallAmount = String(Math.round(options.amountToCharge % 100)).padStart(2, "0")
-  const hasMinimumCharge =
-    typeof options.minimumCharge === "number" && options.minimumCharge > 0
+  const hasMinimumCharge = typeof options.minimumCharge === "number" && options.minimumCharge > 0
 
   // STYLES: one <style> per target, in <head> --------------------
   const styleId = `sgvc-style-${targetEl.replace(/[^\w-]/g, "")}`
@@ -232,11 +229,14 @@ const sgvc = ({
     query(".sgvc-amount-only").classList.add("sgvc-focus-amount")
   }
 
+  // Cents are always two digits: "5" becomes "05"
+  const padCents = (value) => (value.length === 1 ? value.padStart(2, "0") : value)
+
   const handleAmountBlur = (event) => {
     const field = event.target
     const isSmallField = field === smallField
     const newValue = field.value || field.dataset.originalValue || ""
-    field.value = isSmallField && newValue.length === 1 ? newValue.padStart(2, "0") : newValue
+    field.value = isSmallField ? padCents(newValue) : newValue
     query(".sgvc-amount-only").classList.remove("sgvc-focus-amount")
     query("#--sgvc-submit-amount").value = `${bigField.value}${smallField.value}`
     if (!isSmallField) fitBigField(bigField.value.length)
@@ -252,14 +252,16 @@ const sgvc = ({
     fitBigField(bigField.value.length)
   }
 
+  const handleEditAmountClick = (event) => {
+    event.preventDefault()
+    bigField.focus()
+  }
+
   // EVENTS --------------------
   trigger.addEventListener("click", handleTriggerClick)
 
   if (hasMinimumCharge) {
-    query(".sgvc-btn-edit-amount").addEventListener("click", (event) => {
-      event.preventDefault()
-      bigField.focus()
-    })
+    query(".sgvc-btn-edit-amount").addEventListener("click", handleEditAmountClick)
     ;[bigField, smallField].forEach((field) => {
       field.addEventListener("focus", handleAmountFocus)
       field.addEventListener("blur", handleAmountBlur)
@@ -270,44 +272,10 @@ const sgvc = ({
 
   return container
 }
-// ==================================================================
 
-// ==================================================================
-// ---------- MOCK DATA but please maintain objects naming ----------
-// ==================================================================
-// `imgurl` (optional) shows a logo image; without it the bank gets a
-// lettered mark. The old logo host (portal.bp.nu) no longer answers.
-const data = {
-  providers: [
-    { name: "ABN AMRO", id: "ABNANL2A" },
-    { name: "ASN Bank", id: "ASNBNL21" },
-    { name: "bunq", id: "BUNQNL2A" },
-    { name: "Handelsbanken", id: "HANDNL2A" },
-    { name: "ING", id: "INGBNL2A" },
-    { name: "Knab", id: "KNABNL2H" },
-    { name: "Rabobank", id: "RABONL2U" },
-    { name: "SNS", id: "SNSBNL2A" },
-    { name: "Triodos Bank", id: "TRIONL2U" },
-    { name: "Van Lanschot", id: "FVLBNL22" },
-  ],
-  options: {
-    isError: false,
-    amountToCharge: 9900, // number, represent cents
-    minimumCharge: 8888, // number || null, represent cents
-    locale: "nl-NL", // string (optional), default is "nl-NL"
-    currency: "eur", // string (optional), default is "eur"
-    hash: "xxxxxxxxxxxxxxxxx", // string, apply this to hidden formfield
-    tracker: "yyyyyyyyyyyyyyyyy", // string, apply this to hidden formfield
-  },
-}
-// ==================================================================
-
-// ==================================================================
-// ----------------------- Invoke the function ----------------------
-// ==================================================================
 // The demo is static: Cloudflare static assets answer POST with 405, so the
 // sample result page is reached with GET.
 mountTheme()
-sgvc({ targetEl: "#app", data, formMethod: "GET" })
-renderBillSummary({ targetEl: "#sgvc-bill", data })
+sgvc({ targetEl: "#app", data: demoData, formMethod: "GET" })
+renderBillSummary({ targetEl: "#sgvc-bill", data: demoData })
 mountFooter()

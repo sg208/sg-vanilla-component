@@ -8,7 +8,7 @@
 
 ## Style
 
-- No lint/format config present; follow existing files: double quotes, no semicolons (`src/shared/*.js`, `vite.config.js`).
+- Prettier (`.prettierrc.json`: no semicolons, 100 columns) owns formatting; run `pnpm format`. No ESLint yet.
 - Styles = template strings injected via `<style>` from JS; NEVER separate `.css` files (the only CSS import is the fontsource font in `src/shared/theme.js`). Colours via tokens in `src/shared/theme.js`.
 - ES modules only (`package.json` `"type": "module"`).
 

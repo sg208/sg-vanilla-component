@@ -22,12 +22,8 @@ describe("footer", () => {
   it("renders one footer with the legal page links", () => {
     const footers = document.querySelectorAll("footer")
     expect(footers.length).toBe(1)
-    const hrefs = [...footers[0].querySelectorAll("a")].map((link) =>
-      link.getAttribute("href"),
-    )
-    expect(hrefs).toEqual(
-      expect.arrayContaining(["/accessibility/", "/privacy/", "/terms/"]),
-    )
+    const hrefs = [...footers[0].querySelectorAll("a")].map((link) => link.getAttribute("href"))
+    expect(hrefs).toEqual(expect.arrayContaining(["/accessibility/", "/privacy/", "/terms/"]))
   })
 
   it("links to the GitHub repo once, as a labelled icon that opens a new tab", () => {
